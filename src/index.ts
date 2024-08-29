@@ -11,5 +11,5 @@ app.use('/api/measures', measureRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`O server vai rodar na porta: ${PORT}`);
 });

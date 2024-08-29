@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { validateMeasureData, validateUUID, processImage } from '../services/geminiService';
 import { v4 as uuidv4 } from 'uuid';
+import { isMeasureDuplicate as checkDuplicate, isMeasuredConfirmed as checkConfirmed } from '../utils/measureUtils';
 
 const isMeasureDuplicate = (costumer_code: string, measure_datetime: string, measure_type: string): boolean => {
   //vo faze a logica depois
@@ -23,7 +24,7 @@ export const uploadMeasure = async (req: Request, res: Response) => {
 
     const { image, customer_code, measure_datetime, measure_type } = req.body;
 
-    if (isMeasureDuplicate(customer_code, measure_datetime, measure_type)) {
+    if (checkDuplicate(customer_code, measure_datetime, measure_type)) {
       return res.status(409).json({
         error_code: 'DOUBLE_REPORT',
         error_description: 'Leitura do mês já realizada'
