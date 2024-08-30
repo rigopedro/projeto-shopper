@@ -40,7 +40,7 @@ describe('uploadMeasure', () => {
       image: 'image_data'
     };
     (validateMeasureData as jest.Mock).mockReturnValue(true);
-    (isMeasureDuplicate as jest.Mock).mockReturnValue(true); // Mock correto
+    (isMeasureDuplicate as jest.Mock).mockReturnValue(true); //esse é o certo!!
 
     await uploadMeasure(req as Request, res as Response);
 
